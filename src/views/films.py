@@ -79,7 +79,7 @@ class FilmsListApi(Resource):
 
         db.session.add(film)
         db.session.commit()
-        return {'message': 'Updated successfully'}, 200
+        return self.film_schema.dump(film), 200
 
     def delete(self, uuid):
         film = FilmService.fetch_film_by_uuid(db.session, uuid)

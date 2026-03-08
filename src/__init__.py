@@ -13,7 +13,7 @@ migrate = Migrate(app, db)
 api = Api(app)
 
 SWAGGER_URL = '/swagger'
-API_URL = '/static/swagger.json'
+API_URL = '/static/actorfilmswagger.json'
 SWAGGERUI_BLUEPRINT = get_swaggerui_blueprint(
     SWAGGER_URL,
     API_URL,

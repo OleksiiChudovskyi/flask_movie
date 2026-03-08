@@ -23,6 +23,7 @@ def upgrade():
     sa.Column('name', sa.String(length=50), nullable=False),
     sa.Column('birthday', sa.Date(), nullable=True),
     sa.Column('is_active', sa.Boolean(), nullable=True),
+    sa.Column('uuid', sa.String(length=36), nullable=True),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('name')
     )
