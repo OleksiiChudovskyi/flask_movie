@@ -9,7 +9,7 @@ from src import db
 from src.models import Film
 from src.schemas import FilmSchema
 from src.services import FilmService
-from src.views.auth import token_required
+from src.resources.auth import token_required
 
 
 class FilmsListApi(Resource):

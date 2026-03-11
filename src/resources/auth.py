@@ -2,13 +2,14 @@ import datetime
 from functools import wraps
 
 import jwt
-from flask import request, jsonify
+from flask import request, jsonify, current_app
 from flask_restful import Resource
 from marshmallow import ValidationError
 from sqlalchemy.exc import IntegrityError
 from werkzeug.security import check_password_hash
 
-from src import db, app
+from src import db
+# from src import app
 from src.models import User
 from src.schemas import UserSchema
 
@@ -43,7 +44,7 @@ class AuthLogin(Resource):
             {
                 "user_id": user.uuid,
                 "exp": datetime.datetime.now() + datetime.timedelta(hours=1)
-            }, app.config['SECRET_KEY']
+            }, current_app.config['SECRET_KEY']
         )
         return jsonify(
             {
@@ -59,7 +60,7 @@ def token_required(func):
         if not token:
             return "", 401, {"WWW-Authenticate": "Basic realm='Authentication required'"}
         try:
-            uuid = jwt.decode(token, app.config['SECRET_KEY'])['user_id']
+            uuid = jwt.decode(token, current_app.config['SECRET_KEY'])['user_id']
         except (KeyError, jwt.ExpiredSignatureError):
             return "", 401, {"WWW-Authenticate": "Basic realm='Authentication required'"}
         user = User.find_user_by_uuid(uuid=uuid)

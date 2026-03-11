@@ -1,9 +1,7 @@
 import http
 
-from src import app
 
-
-def test_smoke():
-    client = app.test_client()
-    resp = client.get("/smoke")
+def test_smoke(app_dev, api_ver):
+    client = app_dev.test_client()
+    resp = client.get(f"{api_ver}/smoke")
     assert resp.status_code == http.HTTPStatus.OK
