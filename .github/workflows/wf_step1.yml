@@ -2,7 +2,7 @@ name: First WF
 
 on: [ push ]
 
-job:
+jobs:
   Run-first-commit:
     runs-on: ubuntu-latest
     steps:
