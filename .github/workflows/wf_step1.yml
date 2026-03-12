@@ -8,7 +8,6 @@ jobs:
     steps:
       - name: Display some text
         run: echo "Some text"
-      - name: Command in Multiline
+      - name: List files in the repository
         run: |
-          python -v
-          flask -v
+          ls ${{ github.workspace }}
