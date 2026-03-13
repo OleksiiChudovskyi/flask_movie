@@ -1,0 +1,13 @@
+name: First WF
+
+on: [ push ]
+
+jobs:
+  Run-first-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Display some text
+        run: echo "Some text"
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
