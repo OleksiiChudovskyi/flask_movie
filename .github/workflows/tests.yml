@@ -32,7 +32,6 @@ jobs:
         run: pipenv run flake8 src/ --ignore=E722,E501,E402,F401
 
       - name: Run tests
-        run: pipenv run python -m pytest tests/
-
-      - name: Run coverage report
-        run: pipenv run coverage report -m
+        run: |
+          pipenv run python -m pytest tests/
+          pipenv run coverage report -m
