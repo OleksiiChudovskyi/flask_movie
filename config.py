@@ -4,6 +4,8 @@ import pathlib
 class Config:
     DEBUG = False
     TESTING = False
+    HOST = "127.0.0.1"
+    PORT = 5000
 
     BASE_DIR = pathlib.Path(__file__).parent
 
@@ -21,6 +23,8 @@ class Config:
 
 class DevelopmentConfig(Config):
     DEBUG = True
+    HOST = "0.0.0.0"
+    PORT = 5000
 
 
 class ProductionConfig(Config):
