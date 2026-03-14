@@ -26,11 +26,13 @@ jobs:
         run: pip install pipenv
 
       - name: Install dependencies
-        run: pipenv install --dev
+        run: |
+          pipenv install --dev
+          pipenv install pytest pytest-cov coverage
 
       - name: Run style checks (flake8)
         run: pipenv run flake8 src/ --ignore=E722,E501,E402,F401
 
-      - name: Run tests
+      - name: Run tests with coverage
         run: pipenv run pytest --cov=src --cov-report=term
 
