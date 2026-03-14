@@ -9,7 +9,7 @@ from src import db
 from src.models import Film
 from src.schemas import FilmSchema
 from src.services import FilmService
-from src.resources.auth import token_required
+# from src.resources.auth import token_required
 
 
 class FilmsListApi(Resource):
@@ -17,7 +17,7 @@ class FilmsListApi(Resource):
 
     film_schema = FilmSchema()
 
-    @token_required
+    # @token_required
     def get(self, uuid=None):
         if not uuid:
             films = FilmService.fetch_all_films(db.session) \

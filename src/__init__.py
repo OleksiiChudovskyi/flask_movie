@@ -19,7 +19,7 @@ def create_app(config_class=None):
 
     app = Flask(__name__)
 
-    env = app.config.get("ENV", "testing")  # set up in FLASK_ENV
+    env = app.config.get("ENV", "development")  # set up in FLASK_ENV
     if config_class is None:
         if env == "development":
             config_class = "config.DevelopmentConfig"
