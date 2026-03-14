@@ -1,6 +1,7 @@
 from sqlalchemy import and_
+from flask import current_app
 
-from src import app, db
+from src import db
 from src import models
 
 
@@ -16,8 +17,8 @@ def queries_select():
 
     # order_by
     films2 = db.session.query(models.Film).order_by(models.Film.rating).all()  # asc
-    films22 = db.session.query(models.Film).order_by(models.Film.rating.asc()).all()  # asc
-    films23 = db.session.query(models.Film).order_by(models.Film.rating.desc()).all()  # desc
+    # films22 = db.session.query(models.Film).order_by(models.Film.rating.asc()).all()  # asc
+    # films23 = db.session.query(models.Film).order_by(models.Film.rating.desc()).all()  # desc
     print("\n", type(films2))
     print(films2)
 
@@ -108,6 +109,7 @@ def queries_joins():
 
 
 if __name__ == "__main__":
+    app = current_app()
     with app.app_context():
         queries_select()
         queries_joins()

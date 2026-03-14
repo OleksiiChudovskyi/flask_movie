@@ -3,7 +3,7 @@ import datetime
 from flask import request
 from flask_restful import Resource
 from marshmallow import ValidationError
-from sqlalchemy.orm import joinedload, selectinload
+from sqlalchemy.orm import selectinload
 
 from src import db
 from src.models import Film
@@ -17,7 +17,7 @@ class FilmsListApi(Resource):
 
     film_schema = FilmSchema()
 
-    # @token_required
+    @token_required
     def get(self, uuid=None):
         if not uuid:
             films = FilmService.fetch_all_films(db.session) \
