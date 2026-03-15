@@ -4,7 +4,6 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-flask = "*"
 flask-restful = "*"
 flask-sqlalchemy = "*"
 flask-migrate = "*"
@@ -13,6 +12,7 @@ marshmallow-sqlalchemy = "*"
 pyjwt = "*"
 requests = "*"
 bs4 = "*"
+psycopg2-binary = "==2.9.9"
 
 [dev-packages]
 pytest = "*"
@@ -20,5 +20,5 @@ coverage = "*"
 flake8 = "*"
 
 [requires]
-python_version = "3.12"
-python_full_version = "3.12.13"
+python_version = "3.11"
+python_full_version = "3.11.15"

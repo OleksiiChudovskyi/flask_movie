@@ -6,6 +6,7 @@ class Config:
     TESTING = False
     HOST = "127.0.0.1"
     PORT = 5000
+    EXTERNAL_PORT = 5005
 
     BASE_DIR = pathlib.Path(__file__).parent
 
@@ -28,7 +29,17 @@ class DevelopmentConfig(Config):
 
 
 class ProductionConfig(Config):
-    pass
+    POSTGRES_DB = "fm"
+    POSTGRES_USER = "postgres"
+    POSTGRES_PASSWORD = "qwerty"
+    POSTGRES_HOST = "127.0.0.1"
+    POSTGRES_PORT = 5432
+
+    SQLALCHEMY_DATABASE_URI = (
+        f"postgresql+psycopg2://{POSTGRES_DB}:{POSTGRES_PASSWORD}"
+        f"@{POSTGRES_HOST}:{POSTGRES_PORT}/{POSTGRES_DB}"
+    )
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 
 class TestingConfig(Config):
