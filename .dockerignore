@@ -34,6 +34,7 @@ dist/
 
 # === Project local ===
 local_files/
+data/
 sets/
 #ch2-key.pem
 #.env.dev
@@ -46,22 +47,27 @@ sets/
 *.pyc
 
 # === DB ===
-#*.sqlite3
+*.sqlite3
 
 # === GIT ===
 /.git/
+.gitignore
 
 # === Docker ===
-#*.pid
-#*.seed
-#*.pid.lock
+*.pid
+*.seed
+*.pid.lock
+
+# === Travis ===
+.travis.yml
 
 # === Coverage / Testing ===
-/.coverage
+.coverage
 htmlcov/
 .tox/
 pytest_cache/
 .pytest_cache/
+/tests
 
 # === System files ===
 .DS_Store

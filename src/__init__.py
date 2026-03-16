@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
@@ -19,7 +21,7 @@ def create_app(config_class=None):
 
     app = Flask(__name__)
 
-    env = app.config.get("ENV", "development")  # set up in FLASK_ENV
+    env = os.getenv("FLASK_ENV", "development")
     if config_class is None:
         if env == "development":
             config_class = "config.DevelopmentConfig"
