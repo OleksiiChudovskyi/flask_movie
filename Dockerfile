@@ -9,16 +9,19 @@ RUN apt-get update && apt-get install -y netcat-openbsd
 ENV PYTHONUNBUFFERED=1
 ENV PYTHONDONTWRITEBYTECODE=1
 
-RUN pip install --no-cache-dir pipenv
+RUN pip install --upgrade pip
 
-COPY Pipfile .
-COPY Pipfile.lock .
-
-RUN PIPENV_VENV_IN_PROJECT=1 pipenv install --deploy --system
+COPY ./requirements.txt ./requirements.txt
+RUN pip install --no-cache-dir -r ./requirements.txt
 
 COPY . .
+
+RUN sed -i 's/\r$//g' /usr/src/flask_movie/entrypoint.sh
+RUN chmod +x /usr/src/flask_movie/entrypoint.sh
 
 RUN chown -R userapi:userapi /usr/src/flask_movie
 USER userapi
 
-EXPOSE 5000
+EXPOSE 8001
+
+ENTRYPOINT ["./entrypoint.sh"]

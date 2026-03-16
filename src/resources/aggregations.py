@@ -16,8 +16,8 @@ class AggregationApi(Resource):
         sum_rating = db.session.query(func.sum(Film.rating)).scalar()
 
         actor_count = db.session.query(func.count(Actor.id)).scalar()
-        count_isactive = db.session.query(func.count()).filter(Actor.is_active == 1).scalar()
-        count_nonactive = db.session.query(func.count()).filter(Actor.is_active == 0).scalar()
+        count_isactive = db.session.query(func.count()).filter(Actor.is_active.is_(True)).scalar()
+        count_nonactive = db.session.query(func.count()).filter(Actor.is_active.is_(False)).scalar()
 
         return {
             "result":
