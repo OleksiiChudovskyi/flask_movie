@@ -3,10 +3,10 @@ services:
   api:
     build:
       context: ./
-      dockerfile: Dockerfile
+      dockerfile: docker/Dockerfile.prod
     image: flask_movie_prod:6.0.0
     container_name: fm_api
-    command: gunicorn wsgi:app --bind 0.0.0.0:8001 --access-logfile '-'
+    command: gunicorn wsgi:app --bind 0.0.0.0:8001 --workers 4 --timeout 90 --access-logfile '-'
     ports:
       - 5001:8001
     restart: unless-stopped #no, always, on-failure: 5, unless-stopped
@@ -48,6 +48,6 @@ volumes:
 
 secrets:
   flask_secret_key:
-    file: ./sets/secret_key.txt
+    file: sets/secrets/secret_key.txt
   pg_password:
-    file: ./sets/pg_secrets.txt
+    file: sets/secrets/pg_secrets.txt

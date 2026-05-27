@@ -16,12 +16,12 @@ RUN pip install --no-cache-dir -r ./requirements.txt
 
 COPY . .
 
-RUN sed -i 's/\r$//g' /usr/src/flask_movie/entrypoint.sh
-RUN chmod +x /usr/src/flask_movie/entrypoint.sh
+RUN sed -i 's/\r$//g' /usr/src/flask_movie/docker/entrypoint.prod.sh
+RUN chmod +x /usr/src/flask_movie/docker/entrypoint.prod.sh
 
 RUN chown -R userapi:userapi /usr/src/flask_movie
 USER userapi
 
 EXPOSE 8001
 
-ENTRYPOINT ["./entrypoint.sh"]
+ENTRYPOINT ["./docker/entrypoint.prod.sh"]

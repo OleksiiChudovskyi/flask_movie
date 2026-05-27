@@ -6,33 +6,36 @@ from src.models import Film, Actor
 
 
 class AggregationApi(Resource):
-    """"""
+    """Endpoint for displaying aggregated statistics of films and actors.."""
 
     def get(self):
-        films_count = db.session.query(func.count(Film.id)).scalar()
-        max_rating = db.session.query(func.max(Film.rating)).scalar()
-        min_rating = db.session.query(func.min(Film.rating)).scalar()
-        avg_rating = db.session.query(func.avg(Film.rating)).scalar()
-        sum_rating = db.session.query(func.sum(Film.rating)).scalar()
+        # combine all about the movies in ONE entry to the database
+        films_stats = db.session.query(
+            func.count(Film.id),
+            func.max(Film.rating),
+            func.min(Film.rating),
+            func.avg(Film.rating),
+            func.sum(Film.rating)
+        ).one()
 
+        # optimizing actor support.
         actor_count = db.session.query(func.count(Actor.id)).scalar()
-        count_isactive = db.session.query(func.count()).filter(Actor.is_active.is_(True)).scalar()
-        count_nonactive = db.session.query(func.count()).filter(Actor.is_active.is_(False)).scalar()
+        count_isactive = db.session.query(func.count(Actor.id)).filter(Actor.is_active.is_(True)).scalar()
+        count_nonactive = db.session.query(func.count(Actor.id)).filter(Actor.is_active.is_(False)).scalar()
 
         return {
-            "result":
-                {
-                    'films': {
-                        'count': films_count,
-                        'max_rating': max_rating,
-                        'min_rating': min_rating,
-                        'avg_rating': avg_rating,
-                        'sum_rating': sum_rating
-                    },
-                    'actors': {
-                        'count': actor_count,
-                        'count_isactive': count_isactive,
-                        'count_nonactive': count_nonactive
-                    }
+            "result": {
+                'films': {
+                    'count': films_stats[0],
+                    'max_rating': films_stats[1],
+                    'min_rating': films_stats[2],
+                    'avg_rating': float(films_stats[3]) if films_stats[3] else 0.0,
+                    'sum_rating': films_stats[4]
+                },
+                'actors': {
+                    'count': actor_count,
+                    'count_isactive': count_isactive,
+                    'count_nonactive': count_nonactive
                 }
-        }
+            }
+        }, 200

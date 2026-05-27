@@ -35,14 +35,6 @@ def api_ver(app):
     return str(app.config.get("API_VERSION", "/api/v1"))
 
 
-
-
-
-
-
-
-
-
 @pytest.fixture(scope='class')
 def client():
     app = create_app(config_class="config.TestingConfig")
@@ -54,9 +46,3 @@ def client():
     with app.app_context():
         # db.session.remove()
         db.drop_all()
-
-
-# @pytest.fixture(scope='class')
-# def client(app):
-#     return app.test_client()
-

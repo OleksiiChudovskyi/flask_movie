@@ -1,20 +1,21 @@
 #!/bin/sh
 
 
-# checking if the DB is launched
-if [ "$POSTGRES_DB" = "fm" ]
+if [ -n "$POSTGRES_HOST" ]
 then
-    echo "*** Waite our postgres..."
-    while ! nc -z "db" $POSTGRES_PORT; do
+    echo "Waiting for postgres ($POSTGRES_HOST:$POSTGRES_PORT)..."
+
+    while ! nc -z "$POSTGRES_HOST" "${POSTGRES_PORT:-5432}"; do
       sleep 0.5
     done
-    echo "*** PostgreSQL have been launched..."
+
+    echo "PostgreSQL has been launched!"
 fi
 
 
 # applying migration
 echo "*** Running applying migrations..."
-flask db migrate
+#flask db migrate
 flask db upgrade
 
 
