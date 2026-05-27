@@ -57,7 +57,7 @@ local_files/
 #*.pid.lock
 
 # === Coverage / Testing ===
-/.coverage
+#/.coverage
 htmlcov/
 .tox/
 pytest_cache/
