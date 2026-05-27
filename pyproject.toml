@@ -23,6 +23,7 @@ gunicorn = "*"
 pytest = "*"
 coverage = "*"
 flake8 = "*"
+pytest-cov = "^7.1.0"
 
 [build-system]
 requires = ["poetry-core"]
