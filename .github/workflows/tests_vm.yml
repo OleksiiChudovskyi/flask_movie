@@ -30,7 +30,6 @@ jobs:
           virtualenvs-in-project: true
           installer-parallel: true
 
-      # Кешування залежностей Poetry для прискорення наступних запусків CI
       - name: Load cached venv
         id: cached-poetry-dependencies
         uses: actions/cache@v4
@@ -38,7 +37,6 @@ jobs:
           path: .venv
           key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
 
-      # Встановлюємо залежності лише якщо лок-файл змінився (немає в кеші)
       - name: Install dependencies
         if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
         run: poetry install --no-root
