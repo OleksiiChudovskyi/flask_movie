@@ -1,21 +1,17 @@
 import pytest
 
+from config import Config
 from src import create_app, db
 from tests.tests_files._populate_DB import populate_db
 
 
 @pytest.fixture()
-def app():
-    return create_app(config_class="config.TestingConfig")
-
-
-@pytest.fixture()
-def app_dev(app):
+def app_dev():
     return create_app(config_class="config.DevelopmentConfig")
 
 
 @pytest.fixture()
-def app_mock(app):
+def app_mock():
     return create_app(config_class="config.TestingConfig")
 
 
@@ -31,8 +27,8 @@ def app_memory():
 
 
 @pytest.fixture
-def api_ver(app):
-    return str(app.config.get("API_VERSION", "/api/v1"))
+def api_ver():
+    return str(getattr(Config, "API_VERSION", "/api/v1"))
 
 
 @pytest.fixture(scope='class')
