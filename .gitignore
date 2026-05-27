@@ -34,7 +34,7 @@ dist/
 
 # === Project local ===
 local_files/
-sets/
+#sets/
 #ch2-key.pem
 #.env.dev
 #.env.prod
