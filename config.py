@@ -15,7 +15,7 @@ class Config:
     DEBUG = False
     TESTING = False
     HOST = "127.0.0.1"
-    PORT = 5000
+    PORT = 8001
 
     BASE_DIR = pathlib.Path(__file__).parent
 
