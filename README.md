@@ -11,6 +11,8 @@
 [![Tests in Docker](https://github.com/OleksiiChudovskyi/flask_movie/actions/workflows/tests_docker.yml/badge.svg?branch=main)](https://github.com/OleksiiChudovskyi/flask_movie/actions/)
 [![Tests in VM](https://github.com/OleksiiChudovskyi/flask_movie/actions/workflows/tests_vm.yml/badge.svg?branch=main)](https://github.com/OleksiiChudovskyi/flask_movie/actions/)
 
+---
+
 ## 🌐 Живе демо (Production)
 
 Проєкт розгорнуто та запущено в продакшен-середовищі на Railway. Ви можете ознайомитися з інтерактивною документацією та протестувати роботу API за посиланням:
@@ -48,6 +50,8 @@
 2. **Багатопотоковий парсинг (`PopulateDBThreaded`)**: Використовує вбудований модуль `threading`. Одночасні запити виконуються у декількох потоках, що значно прискорює процес збору даних за рахунок ефективного перемикання під час очікування мережевого I/O.
 3. **Пул процесів (`PopulateDBThreadPoolExecutor`)**: Використовує `ProcessPoolExecutor` (із опцією перемикання на `ThreadPoolExecutor`), розподіляючи завдання обробки та парсингу HTML-сторінок між окремими процесами ОС.
 
+---
+
 ## 📝 Веріся Репозиторія & Відкритиість Коду
 
 Цей репозиторій створено з метою максимально прозорої демонстрації архітектури проєкту та навичок розробки.
@@ -76,6 +80,8 @@
    ```bash
    poetry shell
    ```
+
+---
 
 ## 📦 Контейнеризація та Середовища
 
@@ -124,6 +130,8 @@ docker compose -f compose.prod.yml up -d --build
 2. Автоматичне застосування всіх міграцій Alembic.
 3. Автоматичне наповнення бази даних початковими/тестовими даними (Seeding).
 
+---
+
 ## 📈 Тестування та якість коду
 
 Для запуску перевірок локально (без Docker) використовуйте наступні команди:
@@ -135,6 +143,15 @@ poetry run pytest --cov=src
 # Перевірка відповідності коду стандарту PEP 8
 poetry run flake8 src
 ```
+### CI/CD Workflow (GitHub Actions)
+У репозиторії налаштовано два автоматичні сценарії (Workflows):
+1. **Тести в Docker Compose:** Запускає тестовий контейнер на кожен Pull Request / Push для перевірки цілісності інфраструктури.
+2. **Комплексна перевірка коду:** Запускається на віртуальній машині GitHub Runner і виконує:
+   - Тестування (Pytest).
+   - Статичний аналіз та лінтинг (`Ruff Check`).
+   - Перевірку форматування коду (`Ruff Format`).
+
+---
 
 ## 🗺️ Огляд API Ендпоінтів
 
@@ -167,6 +184,8 @@ poetry run flake8 src
 * `PUT /actors/{uuid}` — Оновити інформацію про актора.
 * `PATCH /actors/{uuid}` — Оновити інформацію про актора.
 * `DELETE /actors/{uuid}` — Видалити актора.
+
+---
 
 ## 📝 Ліцензія
 
