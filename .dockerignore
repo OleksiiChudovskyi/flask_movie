@@ -18,8 +18,8 @@
 **/*.egg
 
 # === Django ===
-media/
-staticfiles/
+#media/
+#staticfiles/
 
 # === Node.js ===
 node_modules/
@@ -35,7 +35,7 @@ dist/
 # === Project local ===
 local_files/
 #data/
-sets/
+#sets/
 #ch2-key.pem
 #.env.dev
 #.env.prod
@@ -59,7 +59,7 @@ sets/
 *.pid.lock
 
 # === Coverage / Testing ===
-.coverage
+#.coverage
 htmlcov/
 .tox/
 pytest_cache/
